@@ -65,7 +65,7 @@ app.post('/api/messages/send', (req, res) => {
     }
     
     const transferId = `TR-${String(transferCounter++).padStart(3, '0')}`;
-    const timestamp = new Date().toLocaleTimeString('en-US', { hour12: false });
+    const timestamp = new Date().toLocaleTimeString('en-US', { hour12: false, timeZone: 'Asia/Kolkata' });
     const steps = [];
 
     try {
