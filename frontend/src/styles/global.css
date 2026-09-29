@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+  /* Light Peach Background */
+  --bg-dark: #FFDBB0; 
+  --bg-card: #FFF0D6; /* Slightly lighter for cards to stand out */
+  --bg-input: #FFFFFF;
+  --border-color: #E3AFC9; /* Using your pink for subtle borders */
+
+  /* Adapted Text for Light Theme */
+  --text-main: #2A050D; /* Very dark crimson so it's readable on peach */
+  --text-muted: #8F5766; /* Darker muted pink/brown for subtitles */
+  
+  --accent-primary: #E11A45; /* Crimson Red */
+  --accent-hover: #EDC92C; /* Gold/Yellow */
+  
+  --accent-glow: rgba(225, 26, 69, 0.4);
+  --success: #E11A45; /* Changed success to red so it is visible on the light background */
+  --error: #E11A45;
+  
+  --font-main: 'Inter', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-main);
+  transition: all 0.2s ease;
+}
+
+input, textarea {
+  font-family: var(--font-main);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(227, 175, 201, 0.5); /* translucent pink */
+  border-radius: 12px;
+}
+
+.cyber-button {
+  background: linear-gradient(135deg, var(--accent-primary), #B31435);
+  color: #EFECD7; /* Light beige text on dark red */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  box-shadow: 0 4px 14px 0 var(--accent-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cyber-button:hover {
+  background: linear-gradient(135deg, var(--accent-hover), #D0A914);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(237, 201, 44, 0.7);
+  color: #161213; /* Dark text on gold hover */
+}
+
+.cyber-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.input-field {
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 12px 16px;
+  border-radius: 8px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-field:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+.mono-text {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
