@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const crypto = require('crypto');
+const https = require('https');
 
 const app = express();
 app.use(cors({
@@ -156,5 +157,24 @@ app.post('/api/messages/send', (req, res) => {
     }
 });
 
+// Ping endpoint to keep the server awake
+app.get('/api/ping', (req, res) => {
+    res.status(200).json({ status: 'OK', message: 'Server is awake' });
+});
+
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => console.log(`🚀 Node.js SecureCrypt backend running on port ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`🚀 Node.js SecureCrypt backend running on port ${PORT}`);
+    
+    // Self-ping to keep the Render free tier instance awake (runs every 14 minutes)
+    const url = process.env.RENDER_EXTERNAL_URL;
+    if (url) {
+        setInterval(() => {
+            https.get(`${url}/api/ping`, (res) => {
+                console.log(`[${new Date().toISOString()}] Pinged self to stay awake. Status: ${res.statusCode}`);
+            }).on('error', (err) => {
+                console.error(`[${new Date().toISOString()}] Self-ping failed:`, err.message);
+            });
+        }, 14 * 60 * 1000); // 14 minutes
+    }
+});
